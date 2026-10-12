@@ -1,0 +1,15 @@
+app/node_modules/
+app/dist/
+**/*.tsbuildinfo
+**/.env*
+**/uploads/
+**/backups/
+**/prep_cafe_backup_*.json
+**/qa-backup*.json
+**/test-results/
+**/playwright-report/
+.vercel/
+app/.vercel/
+planing/
+data/*.xlsx
+data/*.json

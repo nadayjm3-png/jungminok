@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-secondary":"#ffffff","on-primary-fixed-variant":"#683d0f","primary-fixed":"#ffdcc1","error":"#ba1a1a","surface-dim":"#d2d9f4","on-error":"#ffffff","on-secondary-fixed-variant":"#6e3900","on-primary":"#ffffff","surface-container":"#eaedff","primary-fixed-dim":"#f9ba82","on-secondary-container":"#663500","surface-container-high":"#e2e7ff","on-tertiary":"#ffffff","on-surface-variant":"#51443a","on-background":"#131b2e","on-surface":"#131b2e","surface-tint":"#835425","outline":"#837469","secondary-fixed":"#ffdcc3","inverse-surface":"#283044","secondary-container":"#fe932c","background":"#faf8ff","surface-variant":"#dae2fd","surface-container-lowest":"#ffffff","on-primary-fixed":"#2e1500","inverse-primary":"#f9ba82","primary":"#6f4315","error-container":"#ffdad6","on-primary-container":"#ffddc2","on-error-container":"#93000a","secondary-fixed-dim":"#ffb77d","surface-bright":"#faf8ff","tertiary-container":"#5052dd","on-secondary-fixed":"#2f1500","tertiary-fixed":"#e1e0ff","surface-container-highest":"#dae2fd","tertiary":"#3636c4","on-tertiary-container":"#e2e0ff","surface":"#faf8ff","tertiary-fixed-dim":"#c0c1ff","on-tertiary-fixed-variant":"#2f2ebe","inverse-on-surface":"#eef0ff","primary-container":"#8b5a2b","outline-variant":"#d5c3b6","surface-container-low":"#f2f3ff","secondary":"#904d00","on-tertiary-fixed":"#07006c"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"margin":"1rem","space-xl":"2rem","gutter":"1rem","space-md":"1rem","space-xs":"0.25rem","space-sm":"0.5rem","margin-desktop":"2rem","gutter-desktop":"1.5rem","space-lg":"1.5rem"},"fontFamily":{"headline-xl-mobile":["Inter"],"headline-xl":["Inter"],"body-md":["Inter"],"label-numeric-sm":["JetBrains Mono"],"headline-lg":["Inter"],"label-numeric-lg":["JetBrains Mono"],"body-lg":["Inter"],"body-sm":["Inter"],"headline-md":["Inter"],"label-caption":["Inter"],"headline-lg-mobile":["Inter"],"label-numeric-md":["JetBrains Mono"]},"fontSize":{"headline-xl-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"label-numeric-sm":["12px",{"lineHeight":"16px","fontWeight":"500"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"600"}],"label-numeric-lg":["24px",{"lineHeight":"32px","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"label-caption":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"500"}],"headline-lg-mobile":["22px",{"lineHeight":"30px","letterSpacing":"-0.015em","fontWeight":"600"}],"label-numeric-md":["14px",{"lineHeight":"20px","fontWeight":"500"}]}}}}</script></head><body class="bg-background font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between hidden md:flex"><div class="flex flex-col"><div class="h-16 flex items-center px-space-lg gap-space-sm bg-surface-container-lowest"><div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary"><span class="material-symbols-outlined text-[22px]">local_cafe</span></div><div class="flex flex-col"><span class="font-headline-md text-headline-md text-primary font-bold leading-none tracking-tight">프렙 카페</span><span class="font-label-caption text-label-caption text-on-surface-variant font-medium mt-0.5">Prep Cafe Operations</span></div></div><div class="px-space-md py-space-sm"><div class="bg-surface-container-low rounded-lg p-space-sm flex items-center gap-space-xs"><span class="material-symbols-outlined text-[16px] text-primary">calendar_today</span><div class="flex flex-col min-w-0"><span class="font-label-caption text-label-caption text-on-surface-variant truncate">마감 기준일</span><span class="font-label-numeric-sm text-label-numeric-sm font-semibold text-on-surface truncate">2026-09-18 (샘플매장)</span></div></div></div><nav class="flex flex-col gap-space-xs px-space-md mt-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="dashboard-and-profitability" href="#"><span class="material-symbols-outlined text-[20px]">query_stats</span><span class="font-body-md text-body-md">손익 &amp; 메뉴 수익성</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="sales-management" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span class="font-body-md text-body-md">판매 기록</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="inventory-and-stock-alert" href="#"><span class="material-symbols-outlined text-[20px]">inventory_2</span><span class="font-body-md text-body-md">재고 &amp; 발주 참고</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="cost-ledger" href="#"><span class="material-symbols-outlined text-[20px]">payments</span><span class="font-body-md text-body-md">비용 기록</span></a><a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="data-backup" href="#"><span class="material-symbols-outlined text-[20px]">settings_backup_restore</span><span class="font-body-md text-body-md">백업 &amp; 복원</span></a></nav></div><div class="p-space-md m-space-md bg-surface-container-low rounded-xl flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="w-2.5 h-2.5 rounded-full bg-secondary-container animate-pulse"></span><span class="font-label-caption text-label-caption text-on-surface-variant font-medium">단일 매장 라이브</span></div><span class="font-label-numeric-sm text-label-numeric-sm text-primary font-bold">POS 연동</span></div></aside><div class="md:pl-64 flex flex-col min-h-screen"><header class="fixed top-0 left-0 md:left-64 right-0 h-16 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-md md:px-space-xl"><div class="flex items-center gap-space-sm"><button class="md:hidden p-space-xs text-on-surface-variant hover:text-on-surface" type="button"><span class="material-symbols-outlined text-[24px]">menu</span></button><div class="flex items-center gap-space-xs md:hidden"><span class="font-headline-md text-headline-md text-primary font-bold">프렙 카페</span></div><div class="hidden sm:flex items-center gap-space-xs bg-surface-container-high px-space-sm py-1 rounded-full"><span class="material-symbols-outlined text-[16px] text-secondary">storefront</span><span class="font-body-sm text-body-sm font-medium text-on-surface">프렙 카페 1호점 (단일 매장)</span></div><div class="hidden lg:flex items-center gap-space-xs text-on-surface-variant"><span class="font-body-sm text-body-sm">마감 기준일: 2026-09-18 (가상 샘플 매장)</span></div></div><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-space-xs text-on-surface-variant"><button class="p-space-xs hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span></button><button class="p-space-xs hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">refresh</span></button></div><div class="flex items-center gap-space-sm pl-space-xs"><div class="flex flex-col text-right hidden sm:flex"><span class="font-body-sm text-body-sm font-semibold text-on-surface leading-tight">운영 매니저</span><span class="font-label-caption text-label-caption text-on-surface-variant">단일 매장 모드</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-[0_1px_4px_rgba(0,0,0,0.08)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa2a3en6eSw8RQKjMRT_jkwixF1lPtEHlLrn0_OBR45nY7O01tmnkGQNFP-otSVHoXZzUx4zaMpCKbusYKiwO2n54Pf2nscJL3Lq8AiK1MYgFEJGDVuhSysrNkJocg4jhixb6V7erX9dfZS2HPV32Z-NmB72ukU_WIjBd7szKN5HnHBBHN6dEELDWQBrWoNhgyorwRAV4iCqnRXdxdjQCojhPzOjODD6fw0KDa-1TthlBiKzYTs4LY"/></div></div></header><main class="w-full pt-16 bg-background flex-1 px-space-md md:px-margin-desktop py-space-lg"><div class="flex flex-col w-full">
+<!-- Top Action & Context Banner -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md mb-space-lg">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm flex-wrap">
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">재고 잔량 &amp; 발주 참고</h1>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-numeric-sm text-label-numeric-sm font-semibold">
+<span class="material-symbols-outlined text-[14px] text-primary">schedule</span>
+          기준일: 2026-09-18 영업 마감 후
+        </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-surface-container text-tertiary font-label-numeric-sm text-label-numeric-sm font-medium">
+<span class="material-symbols-outlined text-[13px]">bolt</span>
+          레시피 차감 자동동기화
+        </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">
+        판매 기록 기반 레시피 자동 차감분과 입고·폐기·실사조정이 반영된 현재 원장 잔량 및 추천 발주 참고량입니다.
+      </p>
+</div>
+<!-- Quick Action Buttons -->
+<div class="flex items-center gap-space-sm flex-shrink-0">
+<button class="inline-flex items-center gap-1.5 px-space-md py-2.5 rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container-high font-body-md text-body-md font-medium shadow-sm transition-all duration-150" type="button">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">content_copy</span>
+        발주 참고 목록 복사
+      </button>
+<button class="inline-flex items-center gap-1.5 px-space-md py-2.5 rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container-high font-body-md text-body-md font-medium shadow-sm transition-all duration-150" type="button">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">print</span>
+        인쇄
+      </button>
+<button class="inline-flex items-center gap-2 px-space-lg py-2.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-body-md text-body-md font-semibold shadow-sm transition-all duration-150 hover:shadow-md" type="button">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+        재고 변동 입력 (입고/폐기/실사)
+      </button>
+</div>
+</div>
+<!-- Critical Inventory Alert Banner (FR-09 Priority Alert) -->
+<div class="mb-space-lg rounded-xl bg-error-container text-on-error-container p-space-md lg:p-space-lg shadow-sm">
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-error text-on-error flex items-center justify-center flex-shrink-0 shadow-sm mt-0.5">
+<span class="material-symbols-outlined text-[22px]">warning</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="font-headline-md text-headline-md font-bold tracking-tight text-on-error-container">
+              긴급 안전재고 미달 및 부족 예상 재료 (3건)
+            </span>
+<span class="px-2 py-0.5 rounded-md bg-error text-on-error font-label-caption text-label-caption font-bold uppercase tracking-wider">
+              즉시 발주 필요
+            </span>
+</div>
+<p class="font-body-md text-body-md text-on-error-container opacity-90 mt-1">
+            공급사 납기 리드타임을 고려할 때 내일 영업 개시 전 또는 오늘 중 발주 승인이 이루어지지 않으면 품절이 발생할 수 있습니다.
+          </p>
+<!-- 3 Critical Items Mini Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm mt-space-md">
+<!-- Item 1 -->
+<div class="p-space-sm rounded-lg bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm font-bold text-error">매일우유 1000ml</span>
+<span class="font-label-numeric-sm text-label-numeric-sm font-semibold text-error">1.0일분 잔여</span>
+</div>
+<div class="mt-1 font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+                  현재 <span class="font-bold text-on-surface">4,200 ml</span> / 기준 8,000 ml
+                </div>
+</div>
+<div class="mt-2 pt-2 border-t border-surface-container-high flex items-center justify-between font-label-caption text-label-caption">
+<span class="text-on-surface-variant">리드타임 1일 고려 즉시</span>
+<span class="font-bold text-primary font-label-numeric-sm">추천: 24,000 ml</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="p-space-sm rounded-lg bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm font-bold text-error">아이스 테이크아웃 컵 16oz</span>
+<span class="font-label-numeric-sm text-label-numeric-sm font-semibold text-error">0.7일분 잔여</span>
+</div>
+<div class="mt-1 font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+                  현재 <span class="font-bold text-on-surface">85 개</span> / 기준 350 개
+                </div>
+</div>
+<div class="mt-2 pt-2 border-t border-surface-container-high flex items-center justify-between font-label-caption text-label-caption">
+<span class="text-on-surface-variant">주말 피크 전 입고 요망</span>
+<span class="font-bold text-primary font-label-numeric-sm">추천: 1,000 개 (1박스)</span>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="p-space-sm rounded-lg bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm font-bold text-secondary">바닐라 빈 시럽 1000ml</span>
+<span class="font-label-numeric-sm text-label-numeric-sm font-semibold text-secondary">2.1일분 잔여</span>
+</div>
+<div class="mt-1 font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+                  현재 <span class="font-bold text-on-surface">600 ml</span> / 기준 1,200 ml
+                </div>
+</div>
+<div class="mt-2 pt-2 border-t border-surface-container-high flex items-center justify-between font-label-caption text-label-caption">
+<span class="text-on-surface-variant">납기 리드타임 3영업일</span>
+<span class="font-bold text-primary font-label-numeric-sm">추천: 2,000 ml (2병)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex md:flex-col items-center justify-end gap-space-xs flex-shrink-0 self-end md:self-start">
+<button class="px-space-md py-2 rounded-lg bg-error text-on-error font-body-md text-body-md font-semibold hover:opacity-95 shadow-sm transition-opacity" type="button">
+          긴급 발주서 작성
+        </button>
+</div>
+</div>
+</div>
+<!-- Summary KPI Cards (4 columns) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-lg">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between transition-all duration-200 hover:shadow-md">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm font-medium text-on-surface-variant">관리 재료 총계</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">category</span>
+</div>
+</div>
+<div class="mt-space-md flex items-baseline gap-space-xs">
+<span class="font-label-numeric-lg text-headline-xl font-bold text-on-surface tracking-tight">11</span>
+<span class="font-body-md text-body-md font-medium text-on-surface-variant">개 품목</span>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-center justify-between font-label-caption text-label-caption text-on-surface-variant">
+<span class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+          원두·우유·시럽·포장재
+        </span>
+<span class="font-semibold text-on-surface">전체 정상 연동</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between transition-all duration-200 hover:shadow-md">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm font-medium text-on-surface-variant">부족 &amp; 안전재고 주의</span>
+<div class="w-8 h-8 rounded-lg bg-error-container flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[18px]">notification_important</span>
+</div>
+</div>
+<div class="mt-space-md flex items-baseline gap-space-xs">
+<span class="font-label-numeric-lg text-headline-xl font-bold text-error tracking-tight">3</span>
+<span class="font-body-md text-body-md font-medium text-on-surface-variant">개 품목</span>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-center justify-between font-label-caption text-label-caption">
+<span class="px-2 py-0.5 rounded-md bg-error-container text-on-error-container font-semibold">
+          긴급 2 / 주의 1
+        </span>
+<span class="text-error font-medium">발주 검토 요망</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between transition-all duration-200 hover:shadow-md">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm font-medium text-on-surface-variant">당월 재고 변동 기록</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">history</span>
+</div>
+</div>
+<div class="mt-space-md flex items-baseline gap-space-xs">
+<span class="font-label-numeric-lg text-headline-xl font-bold text-on-surface tracking-tight">1,515</span>
+<span class="font-body-md text-body-md font-medium text-on-surface-variant">건</span>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-center justify-between font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+<span>입고 <strong class="text-on-surface">1,302</strong></span>
+<span>•</span>
+<span>폐기 <strong class="text-error">189</strong></span>
+<span>•</span>
+<span>실사 <strong class="text-tertiary">24</strong></span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between transition-all duration-200 hover:shadow-md">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm font-medium text-on-surface-variant">예상 참고 발주 금액</span>
+<div class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary font-bold">
+<span class="material-symbols-outlined text-[18px]">payments</span>
+</div>
+</div>
+<div class="mt-space-md flex items-baseline gap-space-xs">
+<span class="font-label-numeric-lg text-headline-xl font-bold text-primary tracking-tight">342,000</span>
+<span class="font-body-md text-body-md font-medium text-on-surface-variant">원</span>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-center justify-between font-label-caption text-label-caption text-on-surface-variant">
+<span>권장 5개 품목 최소단위 합계</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container text-tertiary font-medium">예상치</span>
+</div>
+</div>
+</div>
+<!-- Filter, Search, Tab Toolbar -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md mb-space-md flex flex-col gap-space-md">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<!-- Category Tabs -->
+<div class="flex items-center gap-1 overflow-x-auto pb-1 lg:pb-0" id="filter-tabs">
+<button class="tab-btn px-3.5 py-1.5 rounded-lg text-body-md font-body-md font-semibold bg-primary text-on-primary transition-colors flex-shrink-0" data-category="all" type="button">
+          전체 재료 (11)
+        </button>
+<button class="tab-btn px-3.5 py-1.5 rounded-lg text-body-md font-body-md text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center gap-1 flex-shrink-0" data-category="urgent" type="button">
+          발주 필요 (3)
+          <span class="w-2 h-2 rounded-full bg-error"></span>
+</button>
+<button class="tab-btn px-3.5 py-1.5 rounded-lg text-body-md font-body-md text-on-surface-variant hover:bg-surface-container-high transition-colors flex-shrink-0" data-category="bean" type="button">
+          원두 / 커피 (2)
+        </button>
+<button class="tab-btn px-3.5 py-1.5 rounded-lg text-body-md font-body-md text-on-surface-variant hover:bg-surface-container-high transition-colors flex-shrink-0" data-category="dairy" type="button">
+          유제품 / 시럽 (5)
+        </button>
+<button class="tab-btn px-3.5 py-1.5 rounded-lg text-body-md font-body-md text-on-surface-variant hover:bg-surface-container-high transition-colors flex-shrink-0" data-category="package" type="button">
+          포장재 / 비품 (4)
+        </button>
+</div>
+<!-- Search & Status dropdown -->
+<div class="flex items-center gap-space-sm flex-wrap sm:flex-nowrap">
+<div class="relative flex-1 sm:w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant">search</span>
+<input class="w-full pl-9 pr-3 py-1.5 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-on-surface-variant focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/40 transition-all" id="inventory-search" placeholder="재료명, 공급사, 코드..." type="text"/>
+</div>
+<select class="px-3 py-1.5 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/40" id="status-select">
+<option value="all">전체 상태</option>
+<option value="critical">부족(긴급/권장)</option>
+<option value="warning">주의 (소진임박)</option>
+<option value="normal">정상 (적정)</option>
+</select>
+</div>
+</div>
+<!-- Method Guidance Note (PRD FR-09) -->
+<div class="px-space-md py-2 rounded-lg bg-surface-container-low flex items-start gap-space-xs font-label-caption text-label-caption text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary mt-0.5 flex-shrink-0">info</span>
+<span>
+<strong>발주 참고량 산출 기준:</strong> 최근 7일간 일평균 레시피 실소모량, 공급사 납기 리드타임(영업일), 설정 안전재고 일수 및 공급사 최소 구매 패키지 단위(올림 계산)를 종합하여 산출한 제안치입니다. 실발주량은 매장 상황(프로모션, 휴무일, 기상특보)에 맞춰 운영자가 최종 판단합니다.
+      </span>
+</div>
+</div>
+<!-- Main Ledger & Reorder Table (PRD FR-04, FR-08, FR-09) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden mb-space-lg">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse" id="inventory-table">
+<thead>
+<tr class="h-10 bg-surface-container-low text-on-surface-variant font-label-caption text-label-caption uppercase tracking-wider select-none">
+<th class="py-2.5 px-space-md font-semibold">재료 구분 &amp; 품목명 (코드)</th>
+<th class="py-2.5 px-space-sm font-semibold">공급사</th>
+<th class="py-2.5 px-space-sm text-right font-semibold">현재 원장 잔량</th>
+<th class="py-2.5 px-space-sm text-right font-semibold">안전재고 기준</th>
+<th class="py-2.5 px-space-sm text-center font-semibold">리드타임</th>
+<th class="py-2.5 px-space-sm text-right font-semibold">7일 일평균소모</th>
+<th class="py-2.5 px-space-sm text-right font-semibold">소진 예상 잔여</th>
+<th class="py-2.5 px-space-md text-right font-semibold">권장 참고 발주량</th>
+<th class="py-2.5 px-space-sm text-center font-semibold">최근 변동</th>
+<th class="py-2.5 px-space-sm text-center font-semibold">상태</th>
+<th class="py-2.5 px-space-md text-center font-semibold">관리</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container text-body-md font-body-md text-on-surface">
+<!-- 1. BEAN-01 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors" data-category="bean" data-name="에스프레소 블렌드 원두 BEAN-01 (주)빈브라더스" data-status="warning">
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">에스프레소 블렌드 원두</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">BEAN-01 · 에스프레소 베이스</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm font-body-sm text-body-sm text-on-surface-variant">(주)빈브라더스</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-md text-label-numeric-md font-bold text-on-surface">
+              14,200 <span class="font-normal text-on-surface-variant">g</span>
+</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+              3영업일 <span class="text-on-surface font-medium">(12,000 g)</span>
+</td>
+<td class="py-3 px-space-sm text-center font-label-numeric-sm text-label-numeric-sm">2영업일</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-sm text-label-numeric-sm">3,850 g/일</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-md text-label-numeric-md font-bold text-secondary">
+              3.7일
+            </td>
+<td class="py-3 px-space-md text-right font-label-numeric-md text-label-numeric-md font-bold text-primary">
+              10 kg <span class="text-on-surface-variant font-label-caption text-label-caption font-normal">(1kg × 10팩)</span>
+</td>
+<td class="py-3 px-space-sm text-center font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+              09-17 실사
+            </td>
+<td class="py-3 px-space-sm text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-caption text-label-caption font-bold">
+                주의 (3일대)
+              </span>
+</td>
+<td class="py-3 px-space-md text-center">
+<div class="inline-flex items-center gap-1">
+<button class="px-2 py-1 rounded bg-surface-container-high hover:bg-surface-container font-label-caption text-label-caption font-medium transition-colors" type="button">실사</button>
+<button class="px-2 py-1 rounded bg-surface-container-low hover:bg-surface-container-high font-label-caption text-label-caption font-medium transition-colors" type="button">이력</button>
+</div>
+</td>
+</tr>
+<!-- 2. BEAN-02 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors" data-category="bean" data-name="싱글오리진 에티오피아 원두 BEAN-02 (주)빈브라더스" data-status="normal">
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">싱글오리진 에티오피아 원두</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">BEAN-02 · 필터/싱글</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm font-body-sm text-body-sm text-on-surface-variant">(주)빈브라더스</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-md text-label-numeric-md font-bold text-on-surface">
+              6,800 <span class="font-normal text-on-surface-variant">g</span>
+</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+              2영업일 <span class="text-on-surface font-medium">(3,000 g)</span>
+</td>
+<td class="py-3 px-space-sm text-center font-label-numeric-sm text-label-numeric-sm">2영업일</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-sm text-label-numeric-sm">1,200 g/일</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-md text-label-numeric-md text-on-surface">
+              5.6일
+            </td>
+<td class="py-3 px-space-md text-right font-label-caption text-label-caption text-on-surface-variant">
+              - (충분 잔여)
+            </td>
+<td class="py-3 px-space-sm text-center font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+              09-15 입고
+            </td>
+<td class="py-3 px-space-sm text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container text-tertiary font-label-caption text-label-caption font-semibold">
+                정상
+              </span>
+</td>
+<td class="py-3 px-space-md text-center">
+<div class="inline-flex items-center gap-1">
+<button class="px-2 py-1 rounded bg-surface-container-high hover:bg-surface-container font-label-caption text-label-caption font-medium transition-colors" type="button">실사</button>
+<button class="px-2 py-1 rounded bg-surface-container-low hover:bg-surface-container-high font-label-caption text-label-caption font-medium transition-colors" type="button">이력</button>
+</div>
+</td>
+</tr>
+<!-- 3. DAIRY-01 (CRITICAL) -->
+<tr class="bg-error-container/20 hover:bg-error-container/30 transition-colors" data-category="dairy urgent" data-name="매일우유 1000ml DAIRY-01 서울우유대리점" data-status="critical">
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-error animate-ping"></span>
+<div class="flex flex-col">
+<span class="font-bold text-error">매일우유 1000ml</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-error/80">DAIRY-01 · 라떼류 필수</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm font-body-sm text-body-sm text-on-surface-variant">서울우유대리점</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-md text-label-numeric-md font-bold text-error">
+              4,200 <span class="font-normal text-on-surface-variant">ml</span>
+</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+              2영업일 <span class="text-on-surface font-medium">(8,000 ml)</span>
+</td>
+<td class="py-3 px-space-sm text-center font-label-numeric-sm text-label-numeric-sm font-bold text-error">1영업일</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-sm text-label-numeric-sm">4,100 ml/일</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-md text-label-numeric-md font-bold text-error">
+              1.0일
+            </td>
+<td class="py-3 px-space-md text-right font-label-numeric-md text-label-numeric-md font-bold text-primary">
+              24,000 ml <span class="text-on-surface-variant font-label-caption text-label-caption font-normal">(1L × 24팩/2박스)</span>
+</td>
+<td class="py-3 px-space-sm text-center font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+              09-18 마감
+            </td>
+<td class="py-3 px-space-sm text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-error text-on-error font-label-caption text-label-caption font-bold shadow-sm">
+                긴급 발주
+              </span>
+</td>
+<td class="py-3 px-space-md text-center">
+<div class="inline-flex items-center gap-1">
+<button class="px-2 py-1 rounded bg-primary text-on-primary font-label-caption text-label-caption font-semibold hover:bg-primary-container transition-colors shadow-sm" type="button">발주담기</button>
+<button class="px-2 py-1 rounded bg-surface-container-high hover:bg-surface-container font-label-caption text-label-caption font-medium transition-colors" type="button">실사</button>
+</div>
+</td>
+</tr>
+<!-- 4. DAIRY-02 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors" data-category="dairy" data-name="오트 밀크 귀리우유 DAIRY-02 서울우유대리점" data-status="normal">
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">오트 밀크 (귀리우유)</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">DAIRY-02 · 오트라떼 전용</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm font-body-sm text-body-sm text-on-surface-variant">서울우유대리점</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-md text-label-numeric-md font-bold text-on-surface">
+              7,000 <span class="font-normal text-on-surface-variant">ml</span>
+</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+              2영업일 <span class="text-on-surface font-medium">(4,000 ml)</span>
+</td>
+<td class="py-3 px-space-sm text-center font-label-numeric-sm text-label-numeric-sm">1영업일</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-sm text-label-numeric-sm">1,600 ml/일</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-md text-label-numeric-md text-on-surface">
+              4.3일
+            </td>
+<td class="py-3 px-space-md text-right font-label-caption text-label-caption text-on-surface-variant">
+              - (충분 잔여)
+            </td>
+<td class="py-3 px-space-sm text-center font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+              09-17 입고
+            </td>
+<td class="py-3 px-space-sm text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container text-tertiary font-label-caption text-label-caption font-semibold">
+                정상
+              </span>
+</td>
+<td class="py-3 px-space-md text-center">
+<div class="inline-flex items-center gap-1">
+<button class="px-2 py-1 rounded bg-surface-container-high hover:bg-surface-container font-label-caption text-label-caption font-medium transition-colors" type="button">실사</button>
+<button class="px-2 py-1 rounded bg-surface-container-low hover:bg-surface-container-high font-label-caption text-label-caption font-medium transition-colors" type="button">이력</button>
+</div>
+</td>
+</tr>
+<!-- 5. SYRUP-01 -->
+<tr class="bg-surface-container-high/40 hover:bg-surface-container-high/70 transition-colors" data-category="dairy urgent" data-name="바닐라 빈 시럽 1000ml SYRUP-01 카페파츠코리아" data-status="critical">
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<div class="flex flex-col">
+<span class="font-bold text-on-surface">바닐라 빈 시럽 1000ml</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">SYRUP-01 · 바닐라빈라떼</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm font-body-sm text-body-sm text-on-surface-variant">카페파츠코리아</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-md text-label-numeric-md font-bold text-error">
+              600 <span class="font-normal text-on-surface-variant">ml</span>
+</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+              4영업일 <span class="text-on-surface font-medium">(1,200 ml)</span>
+</td>
+<td class="py-3 px-space-sm text-center font-label-numeric-sm text-label-numeric-sm font-semibold text-secondary">3영업일</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-sm text-label-numeric-sm">280 ml/일</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-md text-label-numeric-md font-bold text-secondary">
+              2.1일
+            </td>
+<td class="py-3 px-space-md text-right font-label-numeric-md text-label-numeric-md font-bold text-primary">
+              2,000 ml <span class="text-on-surface-variant font-label-caption text-label-caption font-normal">(1L × 2병)</span>
+</td>
+<td class="py-3 px-space-sm text-center font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+              09-14 실사
+            </td>
+<td class="py-3 px-space-sm text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-caption text-label-caption font-bold">
+                발주 권장
+              </span>
+</td>
+<td class="py-3 px-space-md text-center">
+<div class="inline-flex items-center gap-1">
+<button class="px-2 py-1 rounded bg-primary text-on-primary font-label-caption text-label-caption font-semibold hover:bg-primary-container transition-colors shadow-sm" type="button">발주담기</button>
+<button class="px-2 py-1 rounded bg-surface-container-high hover:bg-surface-container font-label-caption text-label-caption font-medium transition-colors" type="button">실사</button>
+</div>
+</td>
+</tr>
+<!-- 6. SYRUP-02 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors" data-category="dairy" data-name="초콜릿 소스 2000g SYRUP-02 카페파츠코리아" data-status="normal">
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">초콜릿 소스 2000g</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">SYRUP-02 · 카페모카/초코</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm font-body-sm text-body-sm text-on-surface-variant">카페파츠코리아</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-md text-label-numeric-md font-bold text-on-surface">
+              3,400 <span class="font-normal text-on-surface-variant">g</span>
+</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+              3영업일 <span class="text-on-surface font-medium">(1,800 g)</span>
+</td>
+<td class="py-3 px-space-sm text-center font-label-numeric-sm text-label-numeric-sm">3영업일</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-sm text-label-numeric-sm">550 g/일</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-md text-label-numeric-md text-on-surface">
+              6.1일
+            </td>
+<td class="py-3 px-space-md text-right font-label-caption text-label-caption text-on-surface-variant">
+              - (충분 잔여)
+            </td>
+<td class="py-3 px-space-sm text-center font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+              09-10 입고
+            </td>
+<td class="py-3 px-space-sm text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container text-tertiary font-label-caption text-label-caption font-semibold">
+                정상
+              </span>
+</td>
+<td class="py-3 px-space-md text-center">
+<div class="inline-flex items-center gap-1">
+<button class="px-2 py-1 rounded bg-surface-container-high hover:bg-surface-container font-label-caption text-label-caption font-medium transition-colors" type="button">실사</button>
+<button class="px-2 py-1 rounded bg-surface-container-low hover:bg-surface-container-high font-label-caption text-label-caption font-medium transition-colors" type="button">이력</button>
+</div>
+</td>
+</tr>
+<!-- 7. TEA-01 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors" data-category="dairy" data-name="제주 말차 파우더 1kg TEA-01 카페파츠코리아" data-status="normal">
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">제주 말차 파우더 1kg</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">TEA-01 · 말차라떼 베이스</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm font-body-sm text-body-sm text-on-surface-variant">카페파츠코리아</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-md text-label-numeric-md font-bold text-on-surface">
+              1,850 <span class="font-normal text-on-surface-variant">g</span>
+</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+              5영업일 <span class="text-on-surface font-medium">(1,000 g)</span>
+</td>
+<td class="py-3 px-space-sm text-center font-label-numeric-sm text-label-numeric-sm">3영업일</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-sm text-label-numeric-sm">180 g/일</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-md text-label-numeric-md text-on-surface">
+              10.2일
+            </td>
+<td class="py-3 px-space-md text-right font-label-caption text-label-caption text-on-surface-variant">
+              - (충분 잔여)
+            </td>
+<td class="py-3 px-space-sm text-center font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+              09-12 입고
+            </td>
+<td class="py-3 px-space-sm text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container text-tertiary font-label-caption text-label-caption font-semibold">
+                정상
+              </span>
+</td>
+<td class="py-3 px-space-md text-center">
+<div class="inline-flex items-center gap-1">
+<button class="px-2 py-1 rounded bg-surface-container-high hover:bg-surface-container font-label-caption text-label-caption font-medium transition-colors" type="button">실사</button>
+<button class="px-2 py-1 rounded bg-surface-container-low hover:bg-surface-container-high font-label-caption text-label-caption font-medium transition-colors" type="button">이력</button>
+</div>
+</td>
+</tr>
+<!-- 8. PKG-01 (CRITICAL) -->
+<tr class="bg-error-container/20 hover:bg-error-container/30 transition-colors" data-category="package urgent" data-name="아이스 테이크아웃 컵 16oz PKG-01 팩앤패키지" data-status="critical">
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-error animate-ping"></span>
+<div class="flex flex-col">
+<span class="font-bold text-error">아이스 테이크아웃 컵 16oz</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-error/80">PKG-01 · 하절기 핵심 소모품</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm font-body-sm text-body-sm text-on-surface-variant">팩앤패키지</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-md text-label-numeric-md font-bold text-error">
+              85 <span class="font-normal text-on-surface-variant">개</span>
+</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+              3영업일 <span class="text-on-surface font-medium">(350 개)</span>
+</td>
+<td class="py-3 px-space-sm text-center font-label-numeric-sm text-label-numeric-sm font-bold text-error">2영업일</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-sm text-label-numeric-sm">115 개/일</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-md text-label-numeric-md font-bold text-error">
+              0.7일
+            </td>
+<td class="py-3 px-space-md text-right font-label-numeric-md text-label-numeric-md font-bold text-primary">
+              1,000 개 <span class="text-on-surface-variant font-label-caption text-label-caption font-normal">(1박스 규격)</span>
+</td>
+<td class="py-3 px-space-sm text-center font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+              09-18 마감
+            </td>
+<td class="py-3 px-space-sm text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-error text-on-error font-label-caption text-label-caption font-bold shadow-sm">
+                긴급 발주
+              </span>
+</td>
+<td class="py-3 px-space-md text-center">
+<div class="inline-flex items-center gap-1">
+<button class="px-2 py-1 rounded bg-primary text-on-primary font-label-caption text-label-caption font-semibold hover:bg-primary-container transition-colors shadow-sm" type="button">발주담기</button>
+<button class="px-2 py-1 rounded bg-surface-container-high hover:bg-surface-container font-label-caption text-label-caption font-medium transition-colors" type="button">실사</button>
+</div>
+</td>
+</tr>
+<!-- 9. PKG-02 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors" data-category="package" data-name="핫 테이크아웃 종이컵 12oz PKG-02 팩앤패키지" data-status="normal">
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">핫 테이크아웃 종이컵 12oz</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">PKG-02 · 따뜻한 음료용</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm font-body-sm text-body-sm text-on-surface-variant">팩앤패키지</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-md text-label-numeric-md font-bold text-on-surface">
+              420 <span class="font-normal text-on-surface-variant">개</span>
+</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+              3영업일 <span class="text-on-surface font-medium">(250 개)</span>
+</td>
+<td class="py-3 px-space-sm text-center font-label-numeric-sm text-label-numeric-sm">2영업일</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-sm text-label-numeric-sm">75 개/일</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-md text-label-numeric-md text-on-surface">
+              5.6일
+            </td>
+<td class="py-3 px-space-md text-right font-label-caption text-label-caption text-on-surface-variant">
+              - (충분 잔여)
+            </td>
+<td class="py-3 px-space-sm text-center font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+              09-16 입고
+            </td>
+<td class="py-3 px-space-sm text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container text-tertiary font-label-caption text-label-caption font-semibold">
+                정상
+              </span>
+</td>
+<td class="py-3 px-space-md text-center">
+<div class="inline-flex items-center gap-1">
+<button class="px-2 py-1 rounded bg-surface-container-high hover:bg-surface-container font-label-caption text-label-caption font-medium transition-colors" type="button">실사</button>
+<button class="px-2 py-1 rounded bg-surface-container-low hover:bg-surface-container-high font-label-caption text-label-caption font-medium transition-colors" type="button">이력</button>
+</div>
+</td>
+</tr>
+<!-- 10. PKG-03 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors" data-category="package" data-name="생분해성 빨대 PKG-03 팩앤패키지" data-status="normal">
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">생분해성 빨대 (친환경 PLA)</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">PKG-03 · 개별포장</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm font-body-sm text-body-sm text-on-surface-variant">팩앤패키지</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-md text-label-numeric-md font-bold text-on-surface">
+              1,200 <span class="font-normal text-on-surface-variant">개</span>
+</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+              5영업일 <span class="text-on-surface font-medium">(600 개)</span>
+</td>
+<td class="py-3 px-space-sm text-center font-label-numeric-sm text-label-numeric-sm">2영업일</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-sm text-label-numeric-sm">120 개/일</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-md text-label-numeric-md text-on-surface">
+              10.0일
+            </td>
+<td class="py-3 px-space-md text-right font-label-caption text-label-caption text-on-surface-variant">
+              - (충분 잔여)
+            </td>
+<td class="py-3 px-space-sm text-center font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+              09-15 입고
+            </td>
+<td class="py-3 px-space-sm text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container text-tertiary font-label-caption text-label-caption font-semibold">
+                정상
+              </span>
+</td>
+<td class="py-3 px-space-md text-center">
+<div class="inline-flex items-center gap-1">
+<button class="px-2 py-1 rounded bg-surface-container-high hover:bg-surface-container font-label-caption text-label-caption font-medium transition-colors" type="button">실사</button>
+<button class="px-2 py-1 rounded bg-surface-container-low hover:bg-surface-container-high font-label-caption text-label-caption font-medium transition-colors" type="button">이력</button>
+</div>
+</td>
+</tr>
+<!-- 11. PKG-04 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors" data-category="package" data-name="종이 캐리어 2구 PKG-04 팩앤패키지" data-status="normal">
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">종이 캐리어 2구</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">PKG-04 · 테이크아웃 보조</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm font-body-sm text-body-sm text-on-surface-variant">팩앤패키지</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-md text-label-numeric-md font-bold text-on-surface">
+              260 <span class="font-normal text-on-surface-variant">개</span>
+</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+              3영업일 <span class="text-on-surface font-medium">(150 개)</span>
+</td>
+<td class="py-3 px-space-sm text-center font-label-numeric-sm text-label-numeric-sm">2영업일</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-sm text-label-numeric-sm">42 개/일</td>
+<td class="py-3 px-space-sm text-right font-label-numeric-md text-label-numeric-md text-on-surface">
+              6.1일
+            </td>
+<td class="py-3 px-space-md text-right font-label-caption text-label-caption text-on-surface-variant">
+              - (충분 잔여)
+            </td>
+<td class="py-3 px-space-sm text-center font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+              09-16 입고
+            </td>
+<td class="py-3 px-space-sm text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container text-tertiary font-label-caption text-label-caption font-semibold">
+                정상
+              </span>
+</td>
+<td class="py-3 px-space-md text-center">
+<div class="inline-flex items-center gap-1">
+<button class="px-2 py-1 rounded bg-surface-container-high hover:bg-surface-container font-label-caption text-label-caption font-medium transition-colors" type="button">실사</button>
+<button class="px-2 py-1 rounded bg-surface-container-low hover:bg-surface-container-high font-label-caption text-label-caption font-medium transition-colors" type="button">이력</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer / Stats Bar -->
+<div class="p-space-md bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-space-sm font-label-caption text-label-caption text-on-surface-variant">
+<div class="flex items-center gap-space-md">
+<span>조회 품목 수: <strong class="text-on-surface">11개</strong> 중 <span class="font-bold text-primary" id="visible-count">11개</span> 표시</span>
+<span class="hidden sm:inline">|</span>
+<span class="hidden sm:inline">레시피 차감 기준: 당일 18:00 POS 마감 기준영업분 완벽 차감 완료</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container-high font-medium shadow-sm transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">file_download</span>
+          Excel 원장 다운로드
+        </button>
+</div>
+</div>
+</div>
+<!-- Bottom Quick Reference Cards (Operational Principles & Formulas) -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-md">
+<!-- Info Panel 1: 실사조정 원칙 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-space-xs text-primary mb-space-xs">
+<span class="material-symbols-outlined text-[20px]">fact_check</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">실사 조정(Audit) 운영 원칙</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mt-2">
+          월 1회(또는 재료 누수·이상 징후 발생 시) 마감 후 매장에 비치된 저울 또는 계량기로 <strong>실제로 센 잔량</strong>을 입력하세요. 장부상 이론 재고와의 오차(로스율, 추출 세팅 유실, 펌프 미측정 소모)가 차액으로 분리 집계되어 원장 기준 잔량이 즉시 실제값으로 보정됩니다.
+        </p>
+</div>
+<div class="mt-space-md pt-space-sm border-t border-surface-container flex items-center justify-between text-on-surface-variant font-label-caption text-label-caption">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">task_alt</span>
+          실사 차이분은 '손익 &amp; 메뉴 수익성' 로스 비용으로 자동 전표 처리됩니다.
+        </span>
+<span class="font-semibold text-primary font-label-numeric-sm">FR-08 원장 연동</span>
+</div>
+</div>
+<!-- Info Panel 2: 공식 안내 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-space-xs text-secondary mb-space-xs">
+<span class="material-symbols-outlined text-[20px]">calculate</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">권장 발주량 계산 공식</span>
+</div>
+<div class="mt-2 p-space-sm rounded-lg bg-surface-container-low font-label-numeric-sm text-label-numeric-sm text-on-surface">
+<span class="font-bold text-primary">권장 참고 발주량</span> = 
+          <span class="font-semibold">(안전재고 목표량 + 납기일간 예상 소모량) - 현재 전산 잔량</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+          계산된 필요 수량은 공급사별 최소 구매 패키지 단위(예: 원두 1kg 팩, 우유 1L 24팩 박스, 컵 1,000개 1박스)로 <strong>올림(CEIL)</strong> 처리하여 현장 발주 실무에 즉시 쓸 수 있는 현실적인 규격 단위로 안내합니다.
+        </p>
+</div>
+<div class="mt-space-md pt-space-sm border-t border-surface-container flex items-center justify-between text-on-surface-variant font-label-caption text-label-caption">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">verified</span>
+          리드타임과 최근 7일 회전율 기반 지능형 권장 알고리즘
+        </span>
+<span class="font-semibold text-secondary font-label-numeric-sm">FR-09 알고리즘</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Dynamic Tab and Search Filter Logic
+  document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('inventory-search');
+    const statusSelect = document.getElementById('status-select');
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tableRows = document.querySelectorAll('#inventory-table tbody tr');
+    const visibleCountEl = document.getElementById('visible-count');
+
+    let currentCategory = 'all';
+    let currentStatus = 'all';
+    let currentSearch = '';
+
+    function filterRows() {
+      let count = 0;
+      tableRows.forEach(row => {
+        const category = row.getAttribute('data-category') || '';
+        const status = row.getAttribute('data-status') || '';
+        const searchTarget = (row.getAttribute('data-name') || '').toLowerCase();
+
+        // Check category tab
+        let matchCategory = false;
+        if (currentCategory === 'all') {
+          matchCategory = true;
+        } else if (currentCategory === 'urgent') {
+          matchCategory = category.includes('urgent');
+        } else {
+          matchCategory = category.includes(currentCategory);
+        }
+
+        // Check status select
+        let matchStatus = false;
+        if (currentStatus === 'all') {
+          matchStatus = true;
+        } else {
+          matchStatus = (status === currentStatus);
+        }
+
+        // Check search query
+        const matchSearch = searchTarget.includes(currentSearch.trim().toLowerCase());
+
+        if (matchCategory && matchStatus && matchSearch) {
+          row.style.display = '';
+          count++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      if (visibleCountEl) {
+        visibleCountEl.textContent = count + '개';
+      }
+    }
+
+    // Tab clicks
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', function () {
+        tabButtons.forEach(b => {
+          b.classList.remove('bg-primary', 'text-on-primary', 'font-semibold');
+          b.classList.add('text-on-surface-variant');
+        });
+        this.classList.add('bg-primary', 'text-on-primary', 'font-semibold');
+        this.classList.remove('text-on-surface-variant');
+
+        currentCategory = this.getAttribute('data-category') || 'all';
+        filterRows();
+      });
+    });
+
+    // Search input
+    if (searchInput) {
+      searchInput.addEventListener('input', function (e) {
+        currentSearch = e.target.value;
+        filterRows();
+      });
+    }
+
+    // Status dropdown
+    if (statusSelect) {
+      statusSelect.addEventListener('change', function (e) {
+        currentStatus = e.target.value;
+        filterRows();
+      });
+    }
+  });
+</script></main></div></body></html>

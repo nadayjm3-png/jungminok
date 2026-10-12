@@ -1,0 +1,44 @@
+import {describe,it,expect} from 'vitest';
+import {readFileSync} from 'node:fs';
+import {validateDataset,type Dataset,type Draft,type Sale} from '../src/model';
+import {costFor,filterSales,inventory,makeSale,profitability,totals,validateDraft} from '../src/domain';
+const sample=()=>validateDataset(JSON.parse(readFileSync(new URL('../public/sample.json',import.meta.url),'utf8')));
+const clean=()=>{const d=sample();d.sales=[];return d;};
+const draft:Draft={date:'2026-09-18',menu_id:'M02',channel:'포장',quantity:10,unit_price:4800,discount_amount:1000,payment_fee:700};
+describe('자료·입력·원가',()=>{
+ it('실제 샘플의 ID·단위와 건수 검증',()=>{const d=sample();expect(d.sales).toHaveLength(6112);expect(d.menus).toHaveLength(8);expect(d.materials).toHaveLength(11);expect(d.inventory_events).toHaveLength(1515);});
+ it('중복 ID 거부',()=>{const d=sample();d.sales.push(d.sales[0]);expect(()=>validateDataset(d)).toThrow(/중복/);});
+ it('단위 연결 오류 거부',()=>{const d=sample();d.recipes[0].unit='ml';expect(()=>validateDataset(d)).toThrow(/단위/);});
+ it('같은 날짜 메뉴 채널 중복 거부',()=>{const d=sample();expect(()=>validateDraft(d,draft)).toThrow(/같은 날짜/);});
+ it('4,800×10−1,000=47,000',()=>{expect(makeSale(clean(),draft).net_sales).toBe(47000);});
+ it('판매일 가격 이력과 포장재 계산',()=>{const c=costFor(clean(),'M02','R1','포장','2026-09-18');expect(c.food).toBe(1123.2);expect(c.pack).toBe(166.4);expect(c.usage.find(u=>u.material_id==='I02')?.quantity).toBe(200);});
+ it('매장 판매에는 포장컵 제외',()=>{expect(costFor(clean(),'M02','R1','매장','2026-09-18').pack).toBe(0);});
+ it('디저트 포장 전용 재료 사용',()=>{expect(costFor(clean(),'M08','R1','포장','2026-09-18').pack).toBe(291.2);});
+ it('과거 판매 스냅샷 수량/금액 수정 보존',()=>{const d=sample();const p=d.sales.find(s=>s.menu_id==='M02'&&s.channel==='포장')!;const edited=makeSale(d,{...p,quantity:p.quantity+1,discount_amount:0},p);expect(edited.unit_food_cost_snapshot).toBe(p.unit_food_cost_snapshot);});
+ it('수정 시 같은 ID 제외',()=>{const d=sample();const p=d.sales[0];expect(makeSale(d,{...p,quantity:p.quantity+1},p).sale_id).toBe(p.sale_id);});
+ it('채널 수정 시 원가 새로 적용',()=>{const d=clean();const p=makeSale(d,{...draft,channel:'매장'});expect(makeSale(d,draft,p).unit_packaging_cost_snapshot).toBe(166.4);});
+ it.each([0,-1,1.5,NaN])('수량 오류 %s',v=>expect(()=>makeSale(clean(),{...draft,quantity:v})).toThrow(/수량/));
+ it.each([-1,NaN,1.5])('금액 오류 %s',v=>expect(()=>makeSale(clean(),{...draft,payment_fee:v})).toThrow(/수수료/));
+ it('할인 초과 자동 0처리 금지',()=>expect(()=>makeSale(clean(),{...draft,discount_amount:50000})).toThrow(/할인/));
+ it('미마감일 거부',()=>expect(()=>makeSale(clean(),{...draft,date:'2026-09-19'})).toThrow(/마감/));
+ it('불가능 날짜 거부',()=>expect(()=>makeSale(clean(),{...draft,date:'2026-02-30'})).toThrow(/판매일/));
+ it('알 수 없는 메뉴 거부',()=>expect(()=>makeSale(clean(),{...draft,menu_id:'UNKNOWN'})).toThrow(/메뉴/));
+ it('가격 누락 거부',()=>{const d=clean();d.price_history=[];expect(()=>makeSale(d,draft)).toThrow(/가격/);});
+});
+describe('수익성과 조회',()=>{
+ it('10개 포장 라떼 직접 비용과 수익 독립 기대값',()=>{const d=clean();const s=makeSale(d,draft);const r=totals([s]);expect(r.food).toBe(11232);expect(r.pack).toBe(1664);expect(r.fee).toBe(700);expect(r.profit).toBe(33404);expect(r.per).toBe(3340.4);});
+ it('실제 0 매출 비율은 해당 없음',()=>{const s=makeSale(clean(),{...draft,discount_amount:48000,payment_fee:0});expect(totals([s]).margin).toBeNull();});
+ it('판매 없는 메뉴 개당/비율 해당 없음',()=>{const r=profitability(clean(),'2026-09-01','2026-09-18');expect(r.every(x=>x.per===null&&x.margin===null)).toBe(true);});
+ it('누락 원가를 0으로 숨기지 않음',()=>{const s=makeSale(clean(),draft);s.unit_food_cost_snapshot=NaN;expect(()=>totals([s])).toThrow(/누락/);});
+ it('조회 경계 포함·채널/메뉴 검색',()=>{const d=sample();const rs=filterSales(d,'2026-09-18','2026-09-18','포장','M02','카페라떼');expect(rs).toHaveLength(1);});
+ it('역전된 기간 거부',()=>expect(()=>filterSales(sample(),'2026-09-18','2026-09-01')).toThrow(/조회/));
+ it('전체와 페이지 합계 구분',()=>{const d=sample();const rs=filterSales(d,'2026-09-01','2026-09-18');expect(totals(rs).net).toBeGreaterThan(totals(rs.slice(0,20)).net);});
+});
+describe('잔량과 실사',()=>{
+ it('샘플 잔량이 모두 계산 가능',()=>expect(inventory(sample()).every(r=>r.quantity!==null)).toBe(true));
+ it('9/18 신규 라떼10개 영향: 원두−200g 우유−2000ml 컵−10',()=>{const d=sample();const before=inventory(d);d.sales=d.sales.filter(s=>!(s.date===draft.date&&s.menu_id===draft.menu_id&&s.channel===draft.channel));const base=inventory(d);d.sales.push(makeSale(d,draft));const after=inventory(d);for(const [id,delta] of [['I01',200],['I02',2000],['I10',10]] as const)expect(after.find(r=>r.material.material_id===id)!.quantity).toBe(base.find(r=>r.material.material_id===id)!.quantity!-delta);expect(before).toHaveLength(11);});
+ it('マ감 실측 유지·이중 적용 방지·과거 수정 영향 고정',()=>{const d=clean();d.inventory_events=[{event_id:'T1',date:'2026-09-17',material_id:'I02',event_type:'실사조정',quantity:-500,unit:'ml',counted_quantity:4500}];d.sales=[makeSale(d,{...draft,date:'2026-09-16',channel:'매장',quantity:1}),makeSale(d,{...draft,channel:'매장',quantity:2})];expect(inventory(d).find(r=>r.material.material_id==='I02')!.quantity).toBe(4100);d.sales[0].quantity=100;expect(inventory(d).find(r=>r.material.material_id==='I02')!.quantity).toBe(4100);});
+ it('초기재고 없음 계산 불가',()=>{const d=clean();d.opening_inventory=[];expect(inventory(d).every(r=>r.quantity===null&&r.error)).toBe(true);});
+ it('음수 잔량 그대로 표시',()=>{const d=clean();d.inventory_events=[];d.sales=[makeSale(d,{...draft,quantity:1000})];const r=inventory(d).find(r=>r.material.material_id==='I02')!;expect(r.quantity).toBeLessThan(0);expect(r.warning).toContain('음수');});
+ it('동일 날짜 다중 실사 순서를 추측하지 않음',()=>{const d=clean();d.inventory_events=[{event_id:'a',date:'2026-09-18',material_id:'I02',event_type:'실사조정',quantity:0,unit:'ml',counted_quantity:100},{event_id:'b',date:'2026-09-18',material_id:'I02',event_type:'실사조정',quantity:0,unit:'ml',counted_quantity:200}];expect(inventory(d).find(r=>r.material.material_id==='I02')!.error).toContain('순서');});
+});
